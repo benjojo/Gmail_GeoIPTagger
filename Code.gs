@@ -42,8 +42,11 @@ function TagInbox() {
           if (m != null)
           {
               var ipaddress1=m[1];
-              Logger.log(GetEmailLocation(ipaddress1))
-              
+              var Orign = (GetEmailLocation(ipaddress1))
+              var Res = EnsureWeHaveLabel(GlobalLables,Orign);
+              GlobalLables = Res[1];
+              Label = Res[0];
+              threads[i].addLabel(Label)
           }
           break;
         }
@@ -61,4 +64,15 @@ function GetEmailLocation(IP) {
   var rawjson = UrlFetchApp.fetch("http://freegeoip.net/json/" + IP);
   var obj = JSON.parse(rawjson);
   return obj.country_name;
+}
+
+function EnsureWeHaveLabel(GlobalLables,TargetLabel) {
+  for (var i = 0; i < GlobalLables.length; i++) {
+    if (GlobalLables[i].getName() === "geoip/" + TargetLabel) {
+      return [GlobalLables[i],GlobalLables];
+    }
+  }
+  var NewLabel = GmailApp.createLabel("geoip/" + TargetLabel);
+  GlobalLables = GmailApp.getUserLabels();
+  return [NewLabel,GlobalLables]
 }
