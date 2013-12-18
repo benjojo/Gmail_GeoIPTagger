@@ -6,14 +6,17 @@
 function processInbox() {
   // get all threads in inbox
   var threads = GmailApp.getInboxThreads();
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < 5; i++) {
     // get all messages in a given thread
     var messages = threads[i].getMessages();
+    if(threads[i].getLabels().length != 0) {
+      Logger.log(threads[i].getLabels()[0].getName());
+    }
     // iterate over each message
-    for (var j = 0; j < messages.length; j++) {
+    /*for (var j = 0; j < messages.length; j++) {
       // log message subject
       Logger.log(messages[j].getSubject());
-    }
+    }*/
   }
 };
 
