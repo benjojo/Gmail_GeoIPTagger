@@ -42,7 +42,8 @@ function TagInbox() {
           if (m != null)
           {
               var ipaddress1=m[1];
-              Logger.log(ipaddress1)
+              Logger.log(GetEmailLocation(ipaddress1))
+              
           }
         }
       }
@@ -55,6 +56,8 @@ function TagInbox() {
   }
 };
 
-function TagEmail(email) {
-  
+function GetEmailLocation(IP) {
+  var rawjson = UrlFetchApp.fetch("http://freegeoip.net/json/" + IP);
+  var obj = JSON.parse(rawjson);
+  return obj.country_name;
 }
