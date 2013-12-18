@@ -14,7 +14,7 @@ function TagInbox() {
     GlobalLables = GmailApp.getUserLabels();
   }
   
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 10; i++) {
     // get all messages in a given thread
     var messages = threads[i].getMessages();
     if(threads[i].getLabels().length != 0) {
@@ -22,6 +22,7 @@ function TagInbox() {
       var labels = threads[i].getLabels();
       for (var j = 0; j < labels.length; j++) {
         if(labels[j].getName().indexOf("geoip") != -1 ) {
+          Logger.log(labels[j].getName())
           ContainsGeoIP = true;
         }
       }
