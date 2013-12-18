@@ -21,12 +21,33 @@ function TagInbox() {
       var ContainsGeoIP = false;
       var labels = threads[i].getLabels();
       for (var j = 0; j < labels.length; j++) {
-        if(labels[j].getName() === "geoip") {
+        if(labels[j].getName().indexOf("geoip") != -1 ) {
           ContainsGeoIP = true;
         }
       }
       if(!ContainsGeoIP) {
-        
+        var RawMsg = messages[0].getRawContent().split("\n");
+        // We are looking for
+        // Received: from
+        for (var j = 0; j < RawMsg.length; j++) {
+          if(RawMsg[j].indexOf("Received: from") != -1 && RawMsg[j].indexOf("[") != -1) {
+            Logger.log(RawMsg[j])
+            
+            var re1='.*?((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))(?![\\d])';  // IPv4 IP Address 1
+            var p = new RegExp(re1,["i"]);
+            var m = p.exec(RawMsg[i]);
+            if (m != null)
+            {
+              var ipaddress1=m[1];
+              var Orign = (GetEmailLocation(ipaddress1))
+              var Res = EnsureWeHaveLabel(GlobalLables,Orign);
+              GlobalLables = Res[1];
+              Label = Res[0];
+              threads[i].addLabel(Label)
+            }
+            break;
+          }
+        }
       }
     } else {
       var RawMsg = messages[0].getRawContent().split("\n");
