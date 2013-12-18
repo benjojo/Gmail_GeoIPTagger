@@ -32,9 +32,9 @@ function TagInbox() {
       var RawMsg = messages[0].getRawContent().split("\n");
       // We are looking for
       // Received: from
-      for (var i = 0; i < RawMsg.length; i++) {
-        if(RawMsg[i].indexOf("Received: from") != -1 && RawMsg[i].indexOf("[") != -1) {
-          Logger.log(RawMsg[i])
+      for (var j = 0; j < RawMsg.length; j++) {
+        if(RawMsg[j].indexOf("Received: from") != -1 && RawMsg[j].indexOf("[") != -1) {
+          Logger.log(RawMsg[j])
 
           var re1='.*?((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))(?![\\d])';  // IPv4 IP Address 1
           var p = new RegExp(re1,["i"]);
@@ -45,6 +45,7 @@ function TagInbox() {
               Logger.log(GetEmailLocation(ipaddress1))
               
           }
+          break;
         }
       }
     }
