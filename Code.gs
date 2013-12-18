@@ -11,6 +11,7 @@ function TagInbox() {
   }
   if(!HasGeoIP) {
     GmailApp.createLabel("geoip");
+    GlobalLables = GmailApp.getUserLabels();
   }
   
   for (var i = 0; i < 5; i++) {
