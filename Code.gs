@@ -26,7 +26,9 @@ function TagInbox() {
           ContainsGeoIP = true;
         }
       }
-
+      if(ContainsGeoIP) {
+        break;
+      }
       if(!ContainsGeoIP) {
         ProcessMsg(messages[0],GlobalLables,threads[i])
       }
@@ -55,6 +57,7 @@ function ProcessMsg(msg,GlobalLables,thread) {
         GlobalLables = Res[1];
         Label = Res[0];
         thread.addLabel(Label)
+        break;
       }
     }
   }
