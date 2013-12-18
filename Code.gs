@@ -24,6 +24,7 @@ function TagInbox() {
         if(labels[j].getName().indexOf("geoip") != -1 ) {
           Logger.log(labels[j].getName())
           ContainsGeoIP = true;
+          break;
         }
       }
       if(!ContainsGeoIP) {
@@ -46,7 +47,6 @@ function TagInbox() {
               Label = Res[0];
               threads[i].addLabel(Label)
             }
-            break;
           }
         }
       }
@@ -70,15 +70,9 @@ function TagInbox() {
               Label = Res[0];
               threads[i].addLabel(Label)
           }
-          break;
         }
       }
     }
-    // iterate over each message
-    /*for (var j = 0; j < messages.length; j++) {
-      // log message subject
-      Logger.log(messages[j].getSubject());
-    }*/
   }
 };
 
