@@ -33,8 +33,17 @@ function TagInbox() {
       // We are looking for
       // Received: from
       for (var i = 0; i < RawMsg.length; i++) {
-        if(RawMsg[i].indexOf("Received: from") != -1 && RawMsg[i].indexOf("[") != -1) {
+        if(RawMsg[i].contains("Received: from") && RawMsg[i].contains("[")) {
           Logger.log(RawMsg[i])
+
+          var re1='.*?((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))(?![\\d])';  // IPv4 IP Address 1
+          var p = new RegExp(re1,["i"]);
+          var m = p.exec(RawMsg[i]);
+          if (m != null)
+          {
+              var ipaddress1=m[1];
+              Logger.log(ipaddress1)
+          }
         }
       }
     }
