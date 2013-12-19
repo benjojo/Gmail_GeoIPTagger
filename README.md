@@ -36,7 +36,7 @@ It needs gmail access to tag things as labels, it needs to connect to external s
 ![alt text](.setupimages/6.png "sc6")
 
 If that runs smoothly we can now set it to run automatically
-Resorces > Current Project Triggers
+Resources > Current Project Triggers
 
 ![alt text](.setupimages/7.png "sc7")
 
