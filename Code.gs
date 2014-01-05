@@ -64,9 +64,15 @@ function ProcessMsg(msg,GlobalLables,thread) {
 }
 
 function GetEmailLocation(IP) {
-  var rawjson = UrlFetchApp.fetch("http://freegeoip.net/json/" + IP);
-  var obj = JSON.parse(rawjson);
-  return obj.country_name;
+  try{
+    var rawjson = UrlFetchApp.fetch("http://freegeoip.net/json/" + IP);
+    var obj = JSON.parse(rawjson);
+    return obj.country_name;
+  } catch (e) {
+    var rawjson = UrlFetchApp.fetch("http://smart-ip.net/geoip-json/" + IP);
+    var obj = JSON.parse(rawjson);
+    return obj.countryName;
+  }
 }
 
 function EnsureWeHaveLabel(GlobalLables,TargetLabel) {
