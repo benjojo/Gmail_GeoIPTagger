@@ -56,7 +56,9 @@ function ProcessMsg(msg,GlobalLables,thread) {
         var Res = EnsureWeHaveLabel(GlobalLables,Orign);
         GlobalLables = Res[1];
         Label = Res[0];
-        thread.addLabel(Label)
+        if (Orign != "Reserved" && Orign != "Unknown") {
+          thread.addLabel(Label);
+        }
         break;
       }
     }
