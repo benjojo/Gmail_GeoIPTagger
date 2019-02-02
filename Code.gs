@@ -67,13 +67,13 @@ function ProcessMsg(msg,GlobalLables,thread) {
 
 function GetEmailLocation(IP) {
   try{
-    var rawjson = UrlFetchApp.fetch("http://freegeoip.net/json/" + IP);
+    var rawjson = UrlFetchApp.fetch("http://ipinfo.io/" + IP + "/json");
     var obj = JSON.parse(rawjson);
-    return obj.country_name;
+    return obj.country;
   } catch (e) {
-    var rawjson = UrlFetchApp.fetch("http://smart-ip.net/geoip-json/" + IP);
+    var rawjson = UrlFetchApp.fetch(" https://freegeoip.app/json/" + IP);
     var obj = JSON.parse(rawjson);
-    return obj.countryName;
+    return obj.country_code;
   }
 }
 
