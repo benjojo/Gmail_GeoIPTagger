@@ -71,7 +71,7 @@ function GetEmailLocation(IP) {
     var obj = JSON.parse(rawjson);
     return obj.country;
   } catch (e) {
-    var rawjson = UrlFetchApp.fetch(" https://freegeoip.app/json/" + IP);
+    var rawjson = UrlFetchApp.fetch("https://freegeoip.app/json/" + IP);
     var obj = JSON.parse(rawjson);
     return obj.country_code;
   }
